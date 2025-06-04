@@ -1,32 +1,3 @@
-/*************************************************************************************
-                           The MIT License
-
-   BWA-MEM2  (Sequence alignment using Burrows-Wheeler Transform),
-   Copyright (C) 2019  Intel Corporation, Heng Li.
-
-   Permission is hereby granted, free of charge, to any person obtaining
-   a copy of this software and associated documentation files (the
-   "Software"), to deal in the Software without restriction, including
-   without limitation the rights to use, copy, modify, merge, publish,
-   distribute, sublicense, and/or sell copies of the Software, and to
-   permit persons to whom the Software is furnished to do so, subject to
-   the following conditions:
-
-   The above copyright notice and this permission notice shall be
-   included in all copies or substantial portions of the Software.
-
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
-Authors: Vasimuddin Md <vasimuddin.md@intel.com>; Sanchit Misra <sanchit.misra@intel.com>
-*****************************************************************************************/
-
 #include <stddef.h>
 #include <string.h>
 #include <unistd.h>
@@ -210,7 +181,7 @@ void kswv::kswvBatchWrapper8(SeqPair *pairArray,
     st2 = __rdtsc();
 #endif
     
-#if SORT_PAIRS     // disbaled in bwa-mem2 (only used in separate benchmark sw code)
+#if SORT_PAIRS     // disabled
     {
         // Sort the sequences according to decreasing order of lengths
         SeqPair *tempArray = (SeqPair *)_mm_malloc(SORT_BLOCK_SIZE * numThreads *
@@ -331,7 +302,7 @@ void kswv::kswvBatchWrapper8(SeqPair *pairArray,
     st4 = __rdtsc();
 #endif
     
-#if SORT_PAIRS     // disbaled in bwa-mem2 (only used in separate benchmark sw code)
+#if SORT_PAIRS     // disabled
     {
         // Sort the sequences according to increasing order of id
         #pragma omp parallel num_threads(numThreads)
@@ -759,7 +730,7 @@ void kswv::kswvBatchWrapper16(SeqPair *pairArray,
     st2 = __rdtsc();
 #endif
     
-#if SORT_PAIRS     // disbaled in bwa-mem2 (only used in separate benchmark sw code)
+#if SORT_PAIRS     // disabled
     {
         // Sort the sequences according to decreasing order of lengths
         SeqPair *tempArray = (SeqPair *)_mm_malloc(SORT_BLOCK_SIZE * numThreads *
@@ -895,7 +866,7 @@ void kswv::kswvBatchWrapper16(SeqPair *pairArray,
     st4 = __rdtsc();
 #endif
     
-#if SORT_PAIRS     // disbaled in bwa-mem2 (only used in separate benchmark sw code)
+#if SORT_PAIRS     // disabled
     {
         // Sort the sequences according to increasing order of id
         #pragma omp parallel num_threads(numThreads)
@@ -1794,7 +1765,7 @@ int main(int argc, char *argv[])
     //printf("Done reading input file!!, numPairs: %d, nt: %d\n",
     //     numPairs, numThreads);
 
-#if SORT_PAIRS     // disbaled in bwa-mem2 (only used in separate benchmark sw code)
+#if SORT_PAIRS     // disabled
     printf("\tSorting is enabled !!\n");
 #endif
 

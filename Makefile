@@ -1,7 +1,7 @@
 ##/*************************************************************************************
 ##                           The MIT License
 ##
-##   BWA-MEM2  (Sequence alignment using Burrows-Wheeler Transform),
+##   BWA-PLUS  (Sequence alignment using Burrows-Wheeler Transform),
 ##   Copyright (C) 2019  Intel Corporation, Heng Li.
 ##
 ##   Permission is hereby granted, free of charge, to any person obtaining
@@ -24,15 +24,13 @@
 ##   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ##   SOFTWARE.
 ##
-##Contacts: Vasimuddin Md <vasimuddin.md@intel.com>; Sanchit Misra <sanchit.misra@intel.com>;
-##                                Heng Li <hli@jimmy.harvard.edu> 
 ##*****************************************************************************************/
 
 ifneq ($(portable),)
 	STATIC_GCC=-static-libgcc -static-libstdc++
 endif
 
-EXE=		bwa-mem2
+EXE=		bwa-plus
 #CXX=		icpc
 ifeq ($(CXX), icpc)
 	CC= icc
@@ -102,16 +100,16 @@ all:$(EXE)
 
 multi:
 	rm -f src/*.o $(BWA_LIB); cd ext/safestringlib/ && $(MAKE) clean;
-	$(MAKE) arch=sse41    EXE=bwa-mem2.sse41    CXX=$(CXX) all
+	$(MAKE) arch=sse41    EXE=bwa-plus.sse41    CXX=$(CXX) all
 	rm -f src/*.o $(BWA_LIB); cd ext/safestringlib/ && $(MAKE) clean;
-	$(MAKE) arch=sse42    EXE=bwa-mem2.sse42    CXX=$(CXX) all
+	$(MAKE) arch=sse42    EXE=bwa-plus.sse42    CXX=$(CXX) all
 	rm -f src/*.o $(BWA_LIB); cd ext/safestringlib/ && $(MAKE) clean;
-	$(MAKE) arch=avx    EXE=bwa-mem2.avx    CXX=$(CXX) all
+	$(MAKE) arch=avx    EXE=bwa-plus.avx    CXX=$(CXX) all
 	rm -f src/*.o $(BWA_LIB); cd ext/safestringlib/ && $(MAKE) clean;
-	$(MAKE) arch=avx2   EXE=bwa-mem2.avx2     CXX=$(CXX) all
+	$(MAKE) arch=avx2   EXE=bwa-plus.avx2     CXX=$(CXX) all
 	rm -f src/*.o $(BWA_LIB); cd ext/safestringlib/ && $(MAKE) clean;
-	$(MAKE) arch=avx512 EXE=bwa-mem2.avx512bw CXX=$(CXX) all
-	$(CXX) -Wall -O3 src/runsimd.cpp -Iext/safestringlib/include -Lext/safestringlib/ -lsafestring $(STATIC_GCC) -o bwa-mem2
+	$(MAKE) arch=avx512 EXE=bwa-plus.avx512bw CXX=$(CXX) all
+	$(CXX) -Wall -O3 src/runsimd.cpp -Iext/safestringlib/include -Lext/safestringlib/ -lsafestring $(STATIC_GCC) -o bwa-plus
 
 
 $(EXE):$(BWA_LIB) $(SAFE_STR_LIB) src/main.o
@@ -124,7 +122,7 @@ $(SAFE_STR_LIB):
 	cd ext/safestringlib/ && $(MAKE) clean && $(MAKE) CC=$(CC) directories libsafestring.a
 
 clean:
-	rm -fr src/*.o $(BWA_LIB) $(EXE) bwa-mem2.sse41 bwa-mem2.sse42 bwa-mem2.avx bwa-mem2.avx2 bwa-mem2.avx512bw
+	rm -fr src/*.o $(BWA_LIB) $(EXE) bwa-plus.sse41 bwa-plus.sse42 bwa-plus.avx bwa-plus.avx2 bwa-plus.avx512bw
 	cd ext/safestringlib/ && $(MAKE) clean
 
 depend:

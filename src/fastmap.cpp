@@ -1,33 +1,3 @@
-/*************************************************************************************
-                           The MIT License
-
-   BWA-MEM2  (Sequence alignment using Burrows-Wheeler Transform),
-   Copyright (C) 2019  Intel Corporation, Heng Li.
-
-   Permission is hereby granted, free of charge, to any person obtaining
-   a copy of this software and associated documentation files (the
-   "Software"), to deal in the Software without restriction, including
-   without limitation the rights to use, copy, modify, merge, publish,
-   distribute, sublicense, and/or sell copies of the Software, and to
-   permit persons to whom the Software is furnished to do so, subject to
-   the following conditions:
-
-   The above copyright notice and this permission notice shall be
-   included in all copies or substantial portions of the Software.
-
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
-
-Authors: Vasimuddin Md <vasimuddin.md@intel.com>; Sanchit Misra <sanchit.misra@intel.com>;
-         Heng Li <hli@jimmy.harvard.edu>
-*****************************************************************************************/
-
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -562,7 +532,7 @@ static void update_a(mem_opt_t *opt, const mem_opt_t *opt0)
 
 static void usage(const mem_opt_t *opt)
 {
-    fprintf(stderr, "Usage: bwa-mem2 mem [options] <idxbase> <in1.fq> [in2.fq]\n");
+    fprintf(stderr, "Usage: bwa-plus mem [options] <idxbase> <in1.fq> [in2.fq]\n");
     fprintf(stderr, "Options:\n");
     fprintf(stderr, "  Algorithm options:\n");
     fprintf(stderr, "    -o STR        Output SAM file name\n");
@@ -800,7 +770,7 @@ int main_mem(int argc, char *argv[])
     /* Further input parsing */
     if (mode)
     {
-        fprintf(stderr, "WARNING: bwa-mem2 doesn't work well with long reads or contigs; please use minimap2 instead.\n");
+        fprintf(stderr, "WARNING: bwa doesn't work well with long reads or contigs; please use minimap2 instead.\n");
         if (strcmp(mode, "intractg") == 0)
         {
             if (!opt0.o_del) opt->o_del = 16;
