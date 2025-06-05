@@ -11,7 +11,7 @@ bwa-plus is distributed under the MIT license.
 
 ## Releases
 
-[rel]: https://github.com/hartwigmedical/bwa-plus/releases
+[1.0.0](https://github.com/hartwigmedical/bwa-plus/releases/tag/bwa-plus-v1.0.0)
 
 ## Usage
 
