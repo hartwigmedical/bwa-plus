@@ -44,8 +44,7 @@ RUN make -C bwa-plus/
 ## Move binary to final location and clean up
 RUN chmod +x bwa-plus/bwa-plus* && \
     mv bwa-plus/bwa-plus* /usr/local/bin/ && \
-    rm -r bwa-plus/ bwa-plus-v${VERSION}.tar.gz && \
-    ln -sf /usr/local/bin/bwa-plus /usr/local/bin/bwa-mem2
+    rm -r bwa-plus/ bwa-plus-v${VERSION}.tar.gz
 
 ## Add aliases
 RUN for binary in /usr/local/bin/bwa-plus*; do \
